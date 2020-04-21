@@ -6,6 +6,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import spr.model.State;
 import spr.model.User;
 
+import java.util.Collection;
+
 public class UserDetailsImpl implements UserDetails {
 
     private User user;
@@ -19,7 +21,7 @@ public class UserDetailsImpl implements UserDetails {
     }
     @JsonIgnore
     @Override
-    public java.util.Collection<? extends GrantedAuthority> getAuthorities() {
+    public Collection<? extends GrantedAuthority> getAuthorities() {
         return user.getRoles();
     }
     @JsonIgnore

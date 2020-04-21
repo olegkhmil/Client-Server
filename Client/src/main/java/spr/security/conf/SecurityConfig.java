@@ -66,24 +66,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public RestTemplate restTemplate(PasswordEncoder passwordEncoder) {
-        CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
-        credentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials("admin", "admin"));
-        Header header = new BasicHeader(HttpHeaders.AUTHORIZATION, "admin:admin");
-        List<Header> headers = Lists.newArrayList(header);
-        HttpClient httpClient = HttpClientBuilder
-                .create()
-                .setDefaultHeaders(headers)
-                .setDefaultCredentialsProvider(credentialsProvider)
-                .build();
-        ClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory(httpClient);
-        return new RestTemplate(clientHttpRequestFactory);
-    }
 
-    @Bean
-    public RestTemplateBuilder restTemplateBuilder(){
-        return new RestTemplateBuilder();
-    }
 
 }
